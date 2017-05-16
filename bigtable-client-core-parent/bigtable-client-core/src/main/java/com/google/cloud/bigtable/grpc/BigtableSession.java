@@ -487,6 +487,8 @@ public class BigtableSession implements Closeable {
     // call to NettyChannelBuilder.  Unfortunately, that doesn't work for shaded artifacts.
     NettyChannelBuilder builder = NettyChannelBuilder
         .forAddress(host, options.getPort());
+    builder.setEnableTracing(true);
+    builder.setEnableStatsTagPropagation(true);
 
     if (options.usePlaintextNegotiation()) {
       builder.usePlaintext(true);
